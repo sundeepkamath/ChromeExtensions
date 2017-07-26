@@ -1,5 +1,5 @@
 {
-    "manifest_version": 1,
+    "manifest_version": 2,
 
     "name":"Protein Tracker",
     "description":"Tracks users proteins throughout the day",

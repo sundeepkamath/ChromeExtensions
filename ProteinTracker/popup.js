@@ -1,8 +1,12 @@
 $(function(){
-    chrome.storage.sync.get('total', function(items){
+    chrome.storage.sync.get(['total','goal'], function(items){
         var total = items.total;
+        var goal = items.goal;
         if(total){
-            $('#total').text(items.total);
+            $('#total').text(total);
+        }
+        if(goal){
+            $('#goal').text(goal);
         }
     });
     $('#btnAddProtein').click(function(){

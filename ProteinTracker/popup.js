@@ -10,8 +10,9 @@ $(function(){
         }
     });
     $('#btnAddProtein').click(function(){
-        chrome.storage.sync.get('total', function(items){
+        chrome.storage.sync.get(['total','goal'], function(items){
             var total = items.total;
+            var goal = items.goal;
             var newTotal = 0;
             if(total){
                 var totalAmount = parseInt(total);
@@ -26,6 +27,17 @@ $(function(){
             chrome.storage.sync.set({'total': newTotal});
             $('#amount').val('');
             $('#total').text(newTotal);
+
+            if(newTotal >= goal){
+                var opt = {
+                    type: "basic",
+                    title: "Goal achieved!!",
+                    message: "You have reached the goal of "+ goal +"  !!",
+                    iconUrl: "icon.png"
+                }
+
+                chrome.notifications.create('goalReached', opt, function(){});
+            }
         });
     });
 });
